@@ -1,6 +1,7 @@
 <template>
     <div>
-      <input type="checkbox" :checked="todo.checked">
+      <input type="checkbox" :checked="todo.checked"
+        @change="toggleCheckBox">
       <span class="ml-3">
         {{ todo.text }}
       </span>
@@ -14,6 +15,15 @@ export default {
             type: Object,
             required: true
         }
+    },
+    methods : {
+      toggleCheckBox(e) {
+        console.log("hi");
+        this.$emit('toggle-checkbox', {
+          id: this.todo.id,
+          checked: e.target.checked
+        })
+      }
     }
 }
 </script>
